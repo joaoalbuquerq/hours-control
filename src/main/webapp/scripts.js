@@ -15,5 +15,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
           event.target.value = inputValue;
         });
-      });
-    });
+     });
+});
+    
+
+function limparHorarioMarcacao(){
+    var inputEntrada = document.getElementsByName('marcacaoEntrada')[0];
+    var inputSaida = document.getElementsByName('marcacaoSaida')[0];
+    
+    inputEntrada.value = "";
+    inputSaida.value = "";
+	
+}
+function limparHorariosPadrao(){
+    var inputEntrada = document.getElementsByName('horarioEntrada')[0];
+    var inputSaida = document.getElementsByName('horarioSaida')[0];
+    
+    inputEntrada.value = "";
+    inputSaida.value = "";
+}
+    

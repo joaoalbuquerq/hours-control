@@ -24,9 +24,21 @@ public class CalculosController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		var horario = service.calcular(request.getParameter("marcacaoEntrada"),request.getParameter("marcacaoSaida"));
+		
+		var horarioEntrada = request.getParameter("horarioEntrada");
+		var horarioSaida = request.getParameter("horarioSaida");
+		var marcacaoEntrada = request.getParameter("marcacaoEntrada");
+		var marcacaoSaida = request.getParameter("marcacaoSaida");
+		
+		var horario = service.calcular(horarioEntrada, horarioSaida,marcacaoEntrada,marcacaoSaida);
+		
+		
 		request.setAttribute("atraso", horario.atraso());
 		request.setAttribute("extra", horario.extra());
+		request.setAttribute("horarioPadraoEntrada", horarioEntrada);
+		request.setAttribute("horarioPadraoSaida", horarioSaida);
+		request.setAttribute("horarioMarcacaoEntrada", marcacaoEntrada);
+		request.setAttribute("horarioMarcacaoSaida", marcacaoSaida);
 		
 		request.getRequestDispatcher("/index.jsp").forward(request, response);
 	}
