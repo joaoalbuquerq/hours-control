@@ -8,37 +8,30 @@ import hoursControl.model.Horario;
 public class CalculosService {
 
 	public Horario calcular(String padraoEntrada, String padraoSaida, String marcacaoEntrada, String marcacaoSaida) {
-		
-		String atraso = verificarAtraso(padraoEntrada, padraoSaida, marcacaoEntrada, marcacaoSaida);
-		String extra = verificarExtra(padraoEntrada, padraoSaida, marcacaoEntrada, marcacaoSaida);
-		return new Horario(atraso,extra);
+		return verificarHorarios(padraoEntrada,padraoSaida,marcacaoEntrada,marcacaoSaida);
 	}
 	
-	public String verificarAtraso(String padraoEntrada, String padraoSaida, String marcacaoEntrada, String marcacaoSaida) {
+	public Horario verificarHorarios(String padraoEntrada, String padraoSaida, String marcacaoEntrada, String marcacaoSaida) {
 		
 		LocalTime horarioPadraoEntrada = converterHorario(padraoEntrada);
 		LocalTime horarioPadraoSaida = converterHorario(padraoSaida);
 		LocalTime entrada = converterHorario(marcacaoEntrada);
 		LocalTime saida = converterHorario(marcacaoSaida);
 		
-		long qtdHorasDeviaTrabalhar = Duration.between(horarioPadraoEntrada, horarioPadraoSaida).toHours();
-		long qtdHorasTrabalhadas = Duration.between(entrada, saida).toHours();
-		long saldoHoras = qtdHorasTrabalhadas - qtdHorasDeviaTrabalhar;
+		long cargaHoraria = Duration.between(horarioPadraoEntrada, horarioPadraoSaida).toHours();
+		long horasTrabalhadas = Duration.between(entrada, saida).toHours();
 		
-		return String.valueOf(saldoHoras <= 0 ? saldoHoras : "");
-	}
-	
-	public String verificarExtra(String padraoEntrada, String padraoSaida, String marcacaoEntrada, String marcacaoSaida) {
-		LocalTime horarioPadraoEntrada = converterHorario(padraoEntrada);
-		LocalTime horarioPadraoSaida = converterHorario(padraoSaida);
-		LocalTime entrada = converterHorario(marcacaoEntrada);
-		LocalTime saida = converterHorario(marcacaoSaida);
+		String atraso = "";
+		String extra = "";
 		
-		long qtdHorasDeviaTrabalhar = Duration.between(horarioPadraoEntrada, horarioPadraoSaida).toHours();
-		long qtdHorasTrabalhadas = Duration.between(entrada, saida).toHours();
-		long saldoHoras =  qtdHorasTrabalhadas - qtdHorasDeviaTrabalhar;
+		if((horasTrabalhadas - cargaHoraria) <= 0)
+			atraso = String.valueOf(Math.abs(horasTrabalhadas - cargaHoraria));
 		
-		return String.valueOf(saldoHoras >= 0 ? saldoHoras : "");
+		if((horasTrabalhadas - cargaHoraria) > 0)
+			extra = String.valueOf(horasTrabalhadas - cargaHoraria);
+		
+		
+		return new Horario(extra,atraso);
 	}
 	
 	public LocalTime converterHorario(String horario) {

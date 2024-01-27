@@ -15,12 +15,12 @@
     	<div class="row">
 	      <div class="col-md-2 mb-3">
 	        <label for="horarioEntrada" class="form-label">Horário Entrada: </label>
-	        <input id="masked-time" placeholder="hh:mm" type="text" class="form-control" id="horarioEntrada" name="horarioEntrada" maxlength="5" value=${horarioPadraoEntrada}>
+	        <input id="masked-time" placeholder="hh:mm" type="text" class="form-control" id="horarioEntrada" name="horarioEntrada" maxlength="5" required value=${horarioPadraoEntrada}>
 	      </div>
 	      
 	      <div class="col-md-2 mb-3">
 	      	<label for="horarioSaida" class="form-label">Horário Saída: </label>
-	        <input id="masked-time" placeholder="hh:mm" type="text" class="form-control" id="horarioSaida" name="horarioSaida" maxlength="5" value=${horarioPadraoSaida}>
+	        <input id="masked-time" placeholder="hh:mm" type="text" class="form-control" id="horarioSaida" name="horarioSaida" maxlength="5" required value=${horarioPadraoSaida}>
 	      </div>
 	      
 	      <div>
@@ -43,11 +43,11 @@
   			<tr>
   				
 				<td class="col-md-1">
-					<input id="masked-time" type="text" class="form-control" id="marcacaoEntrada" name="marcacaoEntrada" maxlength="5" placeholder="hh:mm" value=${horarioMarcacaoEntrada}>
+					<input id="masked-time" type="text" class="form-control" id="marcacaoEntrada" name="marcacaoEntrada" maxlength="5" required placeholder="hh:mm" value=${horarioMarcacaoEntrada}>
 			    </td>
 			    
 			    <td class="col-md-1"> 
-			    	<input id="masked-time" type="text" class="form-control" id="marcacaoSaida"  name="marcacaoSaida" maxlength="5" placeholder="hh:mm" value=${horarioMarcacaoSaida}>
+			    	<input id="masked-time" type="text" class="form-control" id="marcacaoSaida"  name="marcacaoSaida" maxlength="5" required placeholder="hh:mm" value=${horarioMarcacaoSaida}>
 			    </td>
 			    
 			    <td class="col-md-1"> 
